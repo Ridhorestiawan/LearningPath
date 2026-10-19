@@ -1,64 +1,147 @@
-# Learning Path — Aplikasi Android
+# Learning Path
 
-Pelacak progres belajar siswa berbasis gamifikasi (Kotlin, XML Views, Firebase).
+**Aplikasi Android pelacak progres belajar siswa berbasis gamifikasi.**
+Siswa menyelesaikan modul, mengumpulkan XP, naik level, dan mengumpulkan badge —
+guru memantau progres seluruh siswa dari satu dashboard.
 
-## Status Implementasi
-- [x] Struktur project & dependency Gradle
-- [x] Model data (User, Course, Module, Progress, Achievement, UserAchievement)
-- [x] Repository layer (Auth, Course, Gamification)
-- [x] Autentikasi: Login, Register, Reset Password (SRS-F-01,02,03)
-- [x] Edit Profil (SRS-F-04)
-- [x] MainActivity + navigasi role (siswa/guru)
-- [x] HomeFragment: daftar mapel + progress bar (SRS-F-05,08)
-- [x] CourseDetailActivity: daftar modul + tandai selesai (SRS-F-06,07)
-- [x] ProgressFragment: ringkasan progres per mapel (SRS-F-05)
-- [x] XP otomatis + Level (SRS-F-09,10)
-- [x] Badge otomatis (SRS-F-11)
-- [x] Leaderboard real-time (SRS-F-12)
-- [x] ProfileFragment: profil + koleksi badge + logout
-- [x] Dashboard Guru: rekap siswa + search/filter (SRS-F-13,15)
-- [x] Kelola Modul: CRUD guru (SRS-F-14)
+*Dibangun untuk mata kuliah **Mobile Programming** — UTS Semester Ganjil 2025/2026.*
 
-## Langkah yang HARUS Anda lakukan (sedang berjalan)
+| | |
+|---|---|
+| **Nama** | Ridho |
+| **NIM** | 2413025031 |
+| **Stack** | Kotlin · XML Views · Firebase (Auth, Cloud Firestore, Cloud Storage) |
+| **Min SDK** | 24 (Android 7.0) — Target SDK 34 |
+| **Arsitektur** | Layered: `data/model` → `data/repository` → `ui/*` (tanpa framework MVVM penuh) |
 
-### 1. Selesaikan instalasi Android SDK
-Buka **Android Studio** → *SDK Manager* → install **Android SDK Platform 34**,
-**Build-Tools**, dan **Platform-Tools**. Buat **AVD** (emulator Pixel, API 34).
+---
 
-### 2. Siapkan Firebase (wajib untuk build)
-1. Buka `https://console.firebase.google.com` → **Buat project** (mis. `learning-path-app`)
-2. Tambahkan **aplikasi Android**, package name: `com.ridho.learningpath`
-   - Debug signing SHA-1 diambil dari `~/.android/debug.keystore`
-3. **Aktifkan Authentication** → Sign-in method → **Email/Password**
-4. **Aktifkan Cloud Firestore** → buat database (mode production)
-5. Unduh **`google-services.json`** → letakkan di folder: `LearningPathApp/app/`
-6. Di Firestore, buat collection `achievements` dan `courses` (seed bad bank)
+## Fitur
 
-### 3. Buka project di Android Studio
-Buka folder `LearningPathApp` dengan Android Studio. Studio akan:
-- Men-generate **Gradle wrapper** (gradlew, jar)
-- Menyinkronkan dependency
-- Klik **Run** untuk menjalankan di emulator
+### Siswa
+- [x] Registrasi / login / reset password (dengan validasi form)
+- [x] Beranda: daftar mata pelajaran + progres keseluruhan
+- [x] Detail mata pelajaran: daftar modul + persentase penyelesaian
+- [x] Baca materi (teks, file PDF, tautan video) lalu **Tandai Selesai**
+- [x] XP otomatis, kalkulasi level, dan pemberian badge
+- [x] Ringkasan progres per mata pelajaran
+- [x] Papan peringkat real-time antar-siswa
+- [x] Profil: edit nama, ganti foto profil, koleksi badge, logout
 
-> **Index yang perlu dibuat di Firestore** (auto muncul saat error):
-> - `users` : `role` ASC + `totalPoin` DESC (untuk leaderboard)
+### Guru
+- [x] Dashboard rekap: jumlah siswa, rata-rata XP, daftar siswa + pencarian
+- [x] Kelola modul (CRUD) termasuk unggah file materi dan tautan video
+- [x] Buat & hapus mata pelajaran
+- [x] Rekap progres siswa per mata pelajaran
 
-## Catatan Firestore — koleksi utama
+### Inti Logika
+- `completeModule` berjalan dalam **satu Firestore Transaction** (ID progress
+  deterministik `{userId}_{moduleId}`) sehingga XP **tidak mungkin ganda** meski
+  tombol ditekan berkali-kali secara bersamaan.
+- Pemberian badge otomatis dan idempoten berdasarkan akumulasi `totalPoin`.
+
+---
+
+## Tangkapan Layar
+
+> 📸 **Bagian ini perlu diisi** — ambil screenshot dari emulator (resolusi minimal 720p),
+> simpan dengan nama berikut di folder `docs/screenshots/`, lalu komit.
+
+| | | |
+|---|---|---|
+| ![Login](docs/screenshots/01_login.png) | ![Beranda](docs/screenshots/02_home.png) | ![Detail Modul](docs/screenshots/03_detail_modul.png) |
+| ![Progres & XP](docs/screenshots/04_progres_xp.png) | ![Leaderboard](docs/screenshots/05_leaderboard.png) | ![Dashboard Guru](docs/screenshots/06_dashboard_guru.png) |
+
+Daftar file yang dibutuhkan:
+1. `01_login.png` — layar login
+2. `02_home.png` — beranda siswa (daftar mapel + progress bar)
+3. `03_detail_modul.png` — daftar modul & status selesai
+4. `04_progres_xp.png` — penambahan XP / ringkasan progres
+5. `05_leaderboard.png` — papan peringkat
+6. `06_dashboard_guru.png` — dashboard guru / kelola modul
+
+---
+
+## Menjalankan Proyek
+
+### Prasyarat
+- Android Studio (Ladybug atau lebih baru) dengan **Android SDK Platform 34**
+- **JDK 17+** (Android Studio JBR sudah mencukupi)
+- Akun **Firebase** untuk project ini
+
+### 1. Konfigurasi Firebase
+1. Buka [Firebase Console](https://console.firebase.google.com) → buat/reuse project.
+2. Tambahkan aplikasi Android dengan package name `com.ridho.learningpath`.
+3. **Authentication** → aktifkan metode *Email/Password*.
+4. **Cloud Firestore** → buat database (production mode).
+5. **Cloud Storage** → aktifkan (untuk unggah file materi & foto profil).
+6. Unduh `google-services.json` → taruh di `LearningPathApp/app/`
+   (sudah ter-commit di repo ini; ganti dengan milik Anda bila ganti project).
+7. Seed data awal di Firestore — collection `achievements` dan `courses`
+   (struktur lihat bagian *Skema Firestore* di bawah).
+
+### 2. Build & Jalankan
+```powershell
+# Dari folder LearningPathApp (Windows)
+.\gradlew.bat assembleDebug
 ```
-users                 -> id, nama, email, role, avatar, level, totalPoin
-courses               -> id, namaMapel, deskripsi, guruId
-modules               -> id, courseId, judulMateri, urutan, konten, xp
-progress              -> id, userId, moduleId, status, tanggalSelesai
-achievements          -> id, namaBadge, deskripsi, syaratPoin
-userAchievements      -> id, userId, achievementId, tanggalDidapat
+Atau buka folder `LearningPathApp` di **Android Studio** → tunggu *Gradle sync* →
+pilih emulator/HP → klik **Run ▶**.
+
+> **Index Firestore** (muncul otomatis saat error, buat sekali):
+> `users` → `role` ASC + `totalPoin` DESC *(untuk papan peringkat)*
+
+### 3. Akun Uji
+Daftarkan 1 akun berperan **siswa** dan 1 akun berperan **guru** langsung dari aplikasi.
+
+---
+
+## Skema Firestore
+
+```
+users            → id, nama, email, role, avatar, level, totalPoin
+courses          → id, namaMapel, deskripsi, guruId
+modules          → id, courseId, judulMateri, urutan, konten, xp, fileName, fileUrl, videoUrl
+progress         → id = {userId}_{moduleId}, userId, moduleId, status, tanggalSelesai
+achievements     → id, namaBadge, deskripsi, syaratPoin
+userAchievements → id, userId, achievementId, tanggalDidapat
 ```
 
-## Struktur
+## Struktur Project
+
 ```
 app/src/main/java/com/ridho/learningpath/
-├── data/model/       (data class)
-├── data/repository/  (Auth, Course, Gamification)
-├── ui/auth/          (Login, Register, ResetPassword)
-├── ui/               (MainActivity)
-├── ui/home|progress|leaderboard|profile|teacher/
+├── data/
+│   ├── model/        # data class (User, Course, Module, Progress, Achievement)
+│   └── repository/   # AuthRepository, CourseRepository, GamificationRepository
+└── ui/
+    ├── auth/         # Login, Register, ResetPassword
+    ├── home/         # Beranda siswa
+    ├── course/       # Detail kursus & detail modul (Tandai Selesai + XP)
+    ├── progress/     # Ringkasan progres per mapel
+    ├── leaderboard/  # Papan peringkat real-time
+    ├── profile/      # Profil, edit profil, koleksi badge
+    ├── teacher/      # Dashboard guru, kelola modul, rekap siswa
+    ├── common/       # UiState
+    └── MainActivity.kt
 ```
+
+---
+
+## Transparansi AI
+
+Project ini dibangun dengan bantuan **opencode** (agen coding AI) sebagai
+*copilot* produktivitas. Pembagian peran per modul, studi kasus prompting,
+serta galat AI yang dideteksi dan diperbaiki secara manual didokumentasikan di
+[`AI_DECLARATION.md`](AI_DECLARATION.md).
+
+---
+
+## Roadmap menuju UAS
+
+- [ ] **Notifikasi pengingat belajar** — Firebase Cloud Messaging (FCM) untuk
+      pengingat harian/jadwal belajar siswa
+- [ ] **Analitik progres mingguan** — grafik XP per hari/minggu (MPAndroidChart)
+      pada layar Progres
+- [ ] Cache lokal (Room) sebagai fallback saat offline
+- [ ] Pemutar video bawaan untuk materi modul
