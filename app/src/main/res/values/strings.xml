@@ -52,6 +52,7 @@
     <string name="tandai_selesai">Tandai Selesai</string>
     <string name="sudah_selesai">Sudah Selesai</string>
     <string name="selesai">Selesai</string>
+    <string name="modul_selesai">Modul Selesai</string>
     <string name="belum_dikerjakan">Belum dikerjakan</string>
     <string name="x_of_y_modul_selesai">%1$d/%2$d modul selesai</string>
     <string name="xp_reward">+%1$d XP</string>

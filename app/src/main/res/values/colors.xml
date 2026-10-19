@@ -10,6 +10,10 @@
     <color name="error">#DC2626</color>
     <color name="error_dark">#B91C1C</color>
 
+    <!-- Medali peringkat (emas = accent) -->
+    <color name="medal_silver">#94A3B8</color>
+    <color name="medal_bronze">#D97706</color>
+
     <!-- Material 3 roles -->
     <color name="on_primary">#FFFFFF</color>
     <color name="primary_container">#E0E7FF</color>

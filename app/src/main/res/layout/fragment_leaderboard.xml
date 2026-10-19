@@ -6,15 +6,29 @@
     android:background="@color/background"
     android:orientation="vertical">
 
-    <TextView
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/space_lg"
         android:layout_marginTop="@dimen/space_lg"
-        android:text="@string/papan_peringkat"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="5dp"
+            android:layout_height="20dp"
+            android:background="@drawable/bg_circle_primary"
+            android:backgroundTint="@color/accent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="@string/papan_peringkat"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </LinearLayout>
 
     <FrameLayout
         android:id="@+id/cardMyRank"
@@ -75,16 +89,33 @@
         </LinearLayout>
     </FrameLayout>
 
-    <TextView
-        android:id="@+id/tvEmpty"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space_xxl"
         android:gravity="center"
-        android:text="@string/empty_peringkat"
-        android:textColor="@color/gray"
-        android:textSize="14sp"
-        android:visibility="gone" />
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:id="@+id/emptyState">
+
+        <ImageView
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:alpha="0.5"
+            android:contentDescription="@string/empty_peringkat"
+            android:src="@drawable/ic_empty"
+            app:tint="@color/gray" />
+
+        <TextView
+            android:id="@+id/tvEmpty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_sm"
+            android:gravity="center"
+            android:text="@string/empty_peringkat"
+            android:textColor="@color/gray"
+            android:textSize="14sp" />
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvLeaderboard"

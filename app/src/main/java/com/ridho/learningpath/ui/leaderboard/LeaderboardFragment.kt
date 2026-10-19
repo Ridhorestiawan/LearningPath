@@ -42,11 +42,11 @@ class LeaderboardFragment : Fragment() {
         listener = gamificationRepository.listenLeaderboard(
             onChange = { users ->
                 if (users.isEmpty()) {
-                    binding.tvEmpty.visibility = View.VISIBLE
+                    binding.emptyState.visibility = View.VISIBLE
                     binding.rvLeaderboard.visibility = View.GONE
                     return@listenLeaderboard
                 }
-                binding.tvEmpty.visibility = View.GONE
+                binding.emptyState.visibility = View.GONE
                 binding.rvLeaderboard.visibility = View.VISIBLE
 
                 val myUid = auth.currentUser?.uid
@@ -64,7 +64,7 @@ class LeaderboardFragment : Fragment() {
 
                 adapter.submit(users)
             },
-            onError = { binding.tvEmpty.visibility = View.VISIBLE }
+            onError = { binding.emptyState.visibility = View.VISIBLE }
         )
     }
 
@@ -105,17 +105,40 @@ class LeaderboardAdapter : RecyclerView.Adapter<LeaderboardAdapter.ViewHolder>()
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val user = users[position]
         val rank = position + 1
+        val context = holder.itemView.context
         holder.tvRank.text = rank.toString()
         holder.tvNama.text = user.nama
         holder.tvLevel.text = "Level ${user.level}"
         holder.tvXp.text = "${user.totalPoin} XP"
         holder.tvAvatar.text = if (user.nama.isNotEmpty()) user.nama.take(1).uppercase() else "?"
 
-        // Warna peringkat untuk 3 besar
+        val card = holder.itemView as? com.google.android.material.card.MaterialCardView
+
+        // Medali untuk 3 besar, angka polos untuk sisanya
         when (rank) {
-            1 -> holder.tvRank.setTextColor(holder.itemView.context.getColor(R.color.accent))
-            2 -> holder.tvRank.setTextColor(holder.itemView.context.getColor(R.color.gray))
-            3 -> holder.tvRank.setTextColor(holder.itemView.context.getColor(R.color.accent))
+            1 -> {
+                holder.tvRank.setBackgroundResource(R.drawable.bg_circle_primary)
+                holder.tvRank.background.setTint(context.getColor(R.color.accent))
+                holder.tvRank.setTextColor(context.getColor(R.color.white))
+                card?.setCardBackgroundColor(context.getColor(R.color.secondary_container))
+            }
+            2 -> {
+                holder.tvRank.setBackgroundResource(R.drawable.bg_circle_primary)
+                holder.tvRank.background.setTint(context.getColor(R.color.medal_silver))
+                holder.tvRank.setTextColor(context.getColor(R.color.white))
+                card?.setCardBackgroundColor(context.getColor(R.color.surface_variant))
+            }
+            3 -> {
+                holder.tvRank.setBackgroundResource(R.drawable.bg_circle_primary)
+                holder.tvRank.background.setTint(context.getColor(R.color.medal_bronze))
+                holder.tvRank.setTextColor(context.getColor(R.color.white))
+                card?.setCardBackgroundColor(context.getColor(R.color.surface_variant))
+            }
+            else -> {
+                holder.tvRank.background = null
+                holder.tvRank.setTextColor(context.getColor(R.color.black))
+                card?.setCardBackgroundColor(context.getColor(R.color.surface_variant))
+            }
         }
     }
 }

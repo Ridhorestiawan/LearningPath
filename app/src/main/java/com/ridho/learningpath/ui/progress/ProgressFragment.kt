@@ -57,6 +57,7 @@ class ProgressFragment : Fragment() {
     private fun loadProgress() {
         lifecycleScope.launch {
             val uid = auth.currentUser?.uid ?: return@launch
+            val user = gamificationRepository.getUser(uid)
             val courses = courseRepository.getCourses()
             val completedIds = gamificationRepository.getCompletedModuleIds(uid)
             val items = mutableListOf<MapelProgressItem>()
@@ -69,11 +70,15 @@ class ProgressFragment : Fragment() {
                 items.add(MapelProgressItem(course, percent, done, total))
             }
 
+            binding.tvStatXp.text = "${user?.totalPoin ?: 0}"
+            binding.tvStatModul.text = completedIds.size.toString()
+            binding.tvStatLevel.text = "${user?.level ?: 1}"
+
             if (items.isEmpty()) {
-                binding.tvEmpty.visibility = View.VISIBLE
+                binding.emptyState.visibility = View.VISIBLE
                 binding.rvProgress.visibility = View.GONE
             } else {
-                binding.tvEmpty.visibility = View.GONE
+                binding.emptyState.visibility = View.GONE
                 binding.rvProgress.visibility = View.VISIBLE
                 adapter.submit(items)
             }
