@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.ridho.learningpath.R
@@ -94,7 +96,9 @@ class CourseDetailActivity : AppCompatActivity() {
                 binding.progressBar.progress = percent
                 binding.tvPercent.text = "$percent%"
 
-                adapter.submit(modules, completedIds)
+                adapter.submitList(
+                    modules.map { ModuleListItem(module = it, isCompleted = it.id in completedIds) }
+                )
             } catch (e: Exception) {
                 binding.progressLoading.visibility = View.GONE
                 binding.rvModules.visibility = View.GONE
@@ -118,20 +122,14 @@ class CourseDetailActivity : AppCompatActivity() {
     }
 }
 
+data class ModuleListItem(
+    val module: Module,
+    val isCompleted: Boolean
+)
+
 class ModuleAdapter(
     private val onClick: (Module) -> Unit
-) : RecyclerView.Adapter<ModuleAdapter.ModuleViewHolder>() {
-
-    private val modules = mutableListOf<Module>()
-    private val completedIds = mutableSetOf<String>()
-
-    fun submit(newModules: List<Module>, newCompleted: Set<String>) {
-        modules.clear()
-        modules.addAll(newModules)
-        completedIds.clear()
-        completedIds.addAll(newCompleted)
-        notifyDataSetChanged()
-    }
+) : ListAdapter<ModuleListItem, ModuleAdapter.ModuleViewHolder>(DIFF_CALLBACK) {
 
     class ModuleViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val tvUrutan: TextView = view.findViewById(R.id.tvUrutan)
@@ -147,17 +145,15 @@ class ModuleAdapter(
         return ModuleViewHolder(view)
     }
 
-    override fun getItemCount(): Int = modules.size
-
     override fun onBindViewHolder(holder: ModuleViewHolder, position: Int) {
-        val module = modules[position]
-        val isCompleted = module.id in completedIds
+        val item = getItem(position)
+        val module = item.module
 
         holder.tvUrutan.text = module.urutan.toString()
         holder.tvJudul.text = module.judulMateri
         holder.tvXp.text = "+${module.xp} XP"
 
-        if (isCompleted) {
+        if (item.isCompleted) {
             holder.tvStatus.text = holder.itemView.context.getString(R.string.selesai)
             holder.tvStatus.setTextColor(holder.itemView.context.getColor(R.color.success))
             holder.tvIconStatus.text = "\u2713"
@@ -172,5 +168,15 @@ class ModuleAdapter(
         }
 
         holder.itemView.setOnClickListener { onClick(module) }
+    }
+
+    companion object {
+        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<ModuleListItem>() {
+            override fun areItemsTheSame(oldItem: ModuleListItem, newItem: ModuleListItem): Boolean =
+                oldItem.module.id == newItem.module.id
+
+            override fun areContentsTheSame(oldItem: ModuleListItem, newItem: ModuleListItem): Boolean =
+                oldItem == newItem
+        }
     }
 }
