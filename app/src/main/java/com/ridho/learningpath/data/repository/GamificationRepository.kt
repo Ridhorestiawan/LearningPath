@@ -25,35 +25,53 @@ class GamificationRepository(
 
     /**
      * Menandai modul selesai dan menambahkan XP.
-     * Mengembalikan `false` jika modul sudah pernah diselesaikan (XP tidak ditambahkan dua kali).
+     *
+     * Seluruh pengecekan dan penulisan dijalankan di dalam satu Firestore Transaction
+     * agar idempoten secara atomik: tap dua kali secara bersamaan tetap hanya
+     * menambah XP satu kali. Karena transaction hanya bisa membaca `DocumentReference`
+     * (bukan query), dokumen progress memakai ID deterministik `{userId}_{moduleId}`.
+     *
+     * Mengembalikan `false` jika modul sudah pernah diselesaikan.
      */
     suspend fun completeModule(userId: String, moduleId: String, xp: Int): Boolean {
-        val query = db.collection(COLLECTION_PROGRESS)
-            .whereEqualTo("userId", userId)
-            .whereEqualTo("moduleId", moduleId)
-            .get().await()
+        val progressRef = db.collection(COLLECTION_PROGRESS)
+            .document(progressDocId(userId, moduleId))
+        val userRef = db.collection(AuthRepository.COLLECTION_USERS).document(userId)
 
-        // Modul sudah diselesaikan sebelumnya -> jangan menambah XP lagi (idempotent).
-        if (!query.isEmpty) return false
+        val newXp = db.runTransaction { transaction ->
+            val progressSnap = transaction.get(progressRef)
+            if (progressSnap.exists()) return@runTransaction null
 
-        val progress = hashMapOf(
-            "userId" to userId,
-            "moduleId" to moduleId,
-            "status" to "selesai",
-            "tanggalSelesai" to System.currentTimeMillis()
-        )
-        db.collection(COLLECTION_PROGRESS).add(progress).await()
+            val userSnap = transaction.get(userRef)
+            val currentXp = (userSnap.getLong("totalPoin") ?: 0L).toInt()
+            val updatedXp = currentXp + xp
 
-        val userDoc = db.collection(AuthRepository.COLLECTION_USERS).document(userId)
-        val snapshot = userDoc.get().await()
-        val currentXp = (snapshot.getLong("totalPoin") ?: 0L).toInt()
-        val newXp = currentXp + xp
-        val newLevel = computeLevel(newXp)
-        userDoc.update("totalPoin", newXp, "level", newLevel).await()
+            transaction.set(
+                progressRef,
+                hashMapOf(
+                    "userId" to userId,
+                    "moduleId" to moduleId,
+                    "status" to "selesai",
+                    "tanggalSelesai" to System.currentTimeMillis()
+                )
+            )
+            transaction.update(
+                userRef,
+                mapOf(
+                    "totalPoin" to updatedXp,
+                    "level" to computeLevel(updatedXp)
+                )
+            )
+            updatedXp
+        }.await()
 
+        if (newXp == null) return false
         checkAchievements(userId, newXp)
         return true
     }
+
+    private fun progressDocId(userId: String, moduleId: String): String =
+        "${userId}_${moduleId}"
 
     suspend fun getCompletedModuleIds(userId: String): Set<String> {
         return try {
