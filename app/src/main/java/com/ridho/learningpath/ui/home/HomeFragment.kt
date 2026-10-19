@@ -50,8 +50,10 @@ class HomeFragment : Fragment() {
         lifecycleScope.launch {
             val uid = auth.currentUser?.uid ?: return@launch
             val user = gamificationRepository.getUser(uid)
-            binding.tvGreeting.text = "Halo, ${user?.nama ?: "Pelajar"}!"
+            val nama = user?.nama ?: "Pelajar"
+            binding.tvGreeting.text = "Halo, $nama!"
             binding.tvLevelInfo.text = "Level ${user?.level ?: 1}  •  ${user?.totalPoin ?: 0} XP"
+            binding.tvAvatar.text = nama.trim().firstOrNull()?.uppercase() ?: "?"
         }
     }
 
@@ -69,10 +71,10 @@ class HomeFragment : Fragment() {
             }
 
             if (courses.isEmpty()) {
-                binding.tvEmpty.visibility = View.VISIBLE
+                binding.emptyState.visibility = View.VISIBLE
                 binding.rvCourses.visibility = View.GONE
             } else {
-                binding.tvEmpty.visibility = View.GONE
+                binding.emptyState.visibility = View.GONE
                 binding.rvCourses.visibility = View.VISIBLE
                 val items = courses.map { course ->
                     val (done, total) = progressMap[course.id] ?: (0 to 0)

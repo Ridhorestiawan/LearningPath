@@ -13,55 +13,78 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:background="@drawable/bg_circle_primary"
+            android:backgroundTint="?attr/colorPrimaryContainer"
+            android:contentDescription="@string/section_mata_pelajaran"
+            android:padding="10dp"
+            android:src="@drawable/ic_school"
+            app:tint="?attr/colorOnPrimaryContainer" />
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
+            android:layout_weight="1"
+            android:layout_marginStart="14dp"
+            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tvCourseName"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textColor="@color/black"
-                android:textSize="17sp"
-                android:textStyle="bold"
-                android:text="Matematika" />
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/tvCourseName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/black"
+                    android:textSize="17sp"
+                    android:textStyle="bold"
+                    android:text="Matematika" />
+
+                <TextView
+                    android:id="@+id/tvPercent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_pill_accent"
+                    android:paddingStart="10dp"
+                    android:paddingTop="3dp"
+                    android:paddingEnd="10dp"
+                    android:paddingBottom="3dp"
+                    android:textColor="@color/on_secondary"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:text="0%" />
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/tvPercent"
+                android:id="@+id/tvCourseInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/primary"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                android:text="0%" />
+                android:layout_marginTop="4dp"
+                android:textColor="@color/gray"
+                android:textSize="13sp"
+                android:text="0/0 modul selesai" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="@color/border"
+                android:max="100"
+                android:progress="0"
+                android:progressBackgroundTint="@color/border"
+                android:progressTint="@color/success" />
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/tvCourseInfo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:textColor="@color/gray"
-            android:textSize="13sp"
-            android:text="0/0 modul selesai" />
-
-        <ProgressBar
-            android:id="@+id/progressBar"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:backgroundTint="@color/border"
-            android:max="100"
-            android:progress="0"
-            android:progressBackgroundTint="@color/border"
-            android:progressTint="@color/success" />
-
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

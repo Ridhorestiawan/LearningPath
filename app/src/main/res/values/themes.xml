@@ -45,4 +45,9 @@
         <item name="materialButtonStyle">@style/Widget.Material3.Button</item>
         <item name="materialCardViewStyle">@style/Widget.Material3.CardView.Filled</item>
     </style>
+
+    <style name="ShapeAppearance.LearningPath.Circle" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
 </resources>

@@ -77,10 +77,10 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:layout_marginEnd="8dp"
+                        app:cardBackgroundColor="?attr/colorPrimaryContainer"
                         app:cardCornerRadius="@dimen/radius_lg"
-                        app:cardElevation="@dimen/elev_med"
-                        app:strokeColor="@color/outline"
-                        app:strokeWidth="1dp">
+                        app:cardElevation="0dp"
+                        app:strokeWidth="0dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -89,12 +89,22 @@
                             android:orientation="vertical"
                             android:padding="16dp">
 
+                            <ImageView
+                                android:layout_width="36dp"
+                                android:layout_height="36dp"
+                                android:background="@drawable/bg_circle_white"
+                                android:contentDescription="@string/label_siswa"
+                                android:padding="8dp"
+                                android:src="@drawable/ic_people"
+                                app:tint="@color/primary" />
+
                             <TextView
                                 android:id="@+id/tvTotalSiswa"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
                                 android:text="0"
-                                android:textColor="@color/primary"
+                                android:textColor="?attr/colorOnPrimaryContainer"
                                 android:textSize="24sp"
                                 android:textStyle="bold" />
 
@@ -103,7 +113,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
                                 android:text="@string/label_siswa"
-                                android:textColor="@color/gray"
+                                android:textColor="?attr/colorOnPrimaryContainer"
                                 android:textSize="13sp" />
                         </LinearLayout>
                     </com.google.android.material.card.MaterialCardView>
@@ -113,10 +123,10 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:layout_marginEnd="8dp"
+                        app:cardBackgroundColor="?attr/colorSecondaryContainer"
                         app:cardCornerRadius="@dimen/radius_lg"
-                        app:cardElevation="@dimen/elev_med"
-                        app:strokeColor="@color/outline"
-                        app:strokeWidth="1dp">
+                        app:cardElevation="0dp"
+                        app:strokeWidth="0dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -125,12 +135,22 @@
                             android:orientation="vertical"
                             android:padding="16dp">
 
+                            <ImageView
+                                android:layout_width="36dp"
+                                android:layout_height="36dp"
+                                android:background="@drawable/bg_circle_white"
+                                android:contentDescription="@string/label_rata_rata_xp"
+                                android:padding="8dp"
+                                android:src="@drawable/ic_star"
+                                app:tint="@color/accent" />
+
                             <TextView
                                 android:id="@+id/tvAvgProgress"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
                                 android:text="0 XP"
-                                android:textColor="@color/success"
+                                android:textColor="?attr/colorOnSecondaryContainer"
                                 android:textSize="24sp"
                                 android:textStyle="bold" />
 
@@ -139,7 +159,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
                                 android:text="@string/label_rata_rata_xp"
-                                android:textColor="@color/gray"
+                                android:textColor="?attr/colorOnSecondaryContainer"
                                 android:textSize="13sp" />
                         </LinearLayout>
                     </com.google.android.material.card.MaterialCardView>
@@ -148,10 +168,10 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        app:cardBackgroundColor="?attr/colorTertiaryContainer"
                         app:cardCornerRadius="@dimen/radius_lg"
-                        app:cardElevation="@dimen/elev_med"
-                        app:strokeColor="@color/outline"
-                        app:strokeWidth="1dp">
+                        app:cardElevation="0dp"
+                        app:strokeWidth="0dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -160,12 +180,22 @@
                             android:orientation="vertical"
                             android:padding="16dp">
 
+                            <ImageView
+                                android:layout_width="36dp"
+                                android:layout_height="36dp"
+                                android:background="@drawable/bg_circle_white"
+                                android:contentDescription="@string/label_modul"
+                                android:padding="8dp"
+                                android:src="@drawable/ic_school"
+                                app:tint="@color/level_purple" />
+
                             <TextView
                                 android:id="@+id/tvTotalModul"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
                                 android:text="0"
-                                android:textColor="@color/level_purple"
+                                android:textColor="?attr/colorOnTertiaryContainer"
                                 android:textSize="24sp"
                                 android:textStyle="bold" />
 
@@ -174,23 +204,37 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
                                 android:text="@string/label_modul"
-                                android:textColor="@color/gray"
+                                android:textColor="?attr/colorOnTertiaryContainer"
                                 android:textSize="13sp" />
                         </LinearLayout>
                     </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
 
                 <!-- Daftar Siswa -->
-                <TextView
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="8dp"
-                    android:text="@string/label_daftar_siswa"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="5dp"
+                        android:layout_height="18dp"
+                        android:background="@drawable/bg_circle_primary"
+                        android:backgroundTint="?attr/colorPrimary" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:text="@string/label_daftar_siswa"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
 
                 <TextView
                     android:id="@+id/tvEmpty"
