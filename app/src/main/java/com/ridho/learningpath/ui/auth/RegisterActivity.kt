@@ -1,6 +1,7 @@
 package com.ridho.learningpath.ui.auth
 
 import android.os.Bundle
+import android.util.Patterns
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -30,6 +31,10 @@ class RegisterActivity : AppCompatActivity() {
 
         if (nama.isEmpty() || email.isEmpty() || password.isEmpty()) {
             Toast.makeText(this, "Semua field wajib diisi", Toast.LENGTH_SHORT).show()
+            return
+        }
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            Toast.makeText(this, "Format email tidak valid", Toast.LENGTH_SHORT).show()
             return
         }
         if (password.length < 6) {
