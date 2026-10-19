@@ -16,6 +16,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.ridho.learningpath.R
 import com.ridho.learningpath.data.model.Course
@@ -32,6 +33,7 @@ class ManageModuleActivity : AppCompatActivity() {
     private val courseRepository = CourseRepository()
     private var courses = listOf<Course>()
     private var selectedCourseId: String? = null
+    private var selectedCourseName: String? = null
     private lateinit var adapter: ManageModuleAdapter
 
     private var activeDialogBinding: DialogAddModuleBinding? = null
@@ -68,6 +70,20 @@ class ManageModuleActivity : AppCompatActivity() {
 
         binding.fabAdd.setOnClickListener { showModuleDialog(null) }
 
+        binding.btnDeleteCourse.setOnClickListener { confirmDeleteCourse() }
+
+        binding.spinnerCourse.setOnItemSelectedListener(object : android.widget.AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: android.widget.AdapterView<*>?, view: View?, position: Int, id: Long) {
+                val course = courses.getOrNull(position)
+                selectedCourseId = course?.id
+                selectedCourseName = course?.namaMapel
+                binding.btnDeleteCourse.isEnabled = selectedCourseId != null
+                if (selectedCourseId != null) loadModules()
+            }
+
+            override fun onNothingSelected(parent: android.widget.AdapterView<*>?) {}
+        })
+
         loadCourses()
     }
 
@@ -77,6 +93,12 @@ class ManageModuleActivity : AppCompatActivity() {
             courses = courseRepository.getCourses(uid)
 
             if (courses.isEmpty()) {
+                selectedCourseId = null
+                selectedCourseName = null
+                binding.btnDeleteCourse.isEnabled = false
+                binding.spinnerCourse.adapter =
+                    ArrayAdapter(this@ManageModuleActivity, android.R.layout.simple_spinner_item, emptyList<String>())
+                adapter.submit(emptyList())
                 binding.tvEmpty.text = getString(R.string.mapel_kosong)
                 binding.tvEmpty.visibility = View.VISIBLE
                 binding.rvModules.visibility = View.GONE
@@ -89,15 +111,6 @@ class ManageModuleActivity : AppCompatActivity() {
             binding.spinnerCourse.adapter = spinnerAdapter
             binding.tvEmpty.visibility = View.VISIBLE
             binding.tvEmpty.text = getString(R.string.pilih_mapel_untuk_melihat_modul)
-
-            binding.spinnerCourse.setOnItemSelectedListener(object : android.widget.AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(parent: android.widget.AdapterView<*>?, view: View?, position: Int, id: Long) {
-                    selectedCourseId = courses.getOrNull(position)?.id
-                    loadModules()
-                }
-
-                override fun onNothingSelected(parent: android.widget.AdapterView<*>?) {}
-            })
         }
     }
 
@@ -279,6 +292,36 @@ class ManageModuleActivity : AppCompatActivity() {
             }
             .setNegativeButton(R.string.batal, null)
             .show()
+    }
+
+    private fun confirmDeleteCourse() {
+        val courseId = selectedCourseId ?: return
+        val courseName = selectedCourseName ?: return
+
+        lifecycleScope.launch {
+            val moduleCount = courseRepository.getModules(courseId).size
+            MaterialAlertDialogBuilder(this@ManageModuleActivity)
+                .setTitle(R.string.hapus_mapel)
+                .setMessage(getString(R.string.konfirmasi_hapus_mapel, courseName, moduleCount))
+                .setPositiveButton(R.string.hapus) { _, _ -> deleteCourse(courseId) }
+                .setNegativeButton(R.string.batal, null)
+                .show()
+        }
+    }
+
+    private fun deleteCourse(courseId: String) {
+        lifecycleScope.launch {
+            binding.btnDeleteCourse.isEnabled = false
+            val error = courseRepository.deleteCourse(courseId)
+            if (error == null) {
+                adapter.submit(emptyList())
+                loadCourses()
+                Snackbar.make(binding.root, R.string.mapel_dihapus, Snackbar.LENGTH_SHORT).show()
+            } else {
+                binding.btnDeleteCourse.isEnabled = true
+                Toast.makeText(this@ManageModuleActivity, error, Toast.LENGTH_LONG).show()
+            }
+        }
     }
 }
 

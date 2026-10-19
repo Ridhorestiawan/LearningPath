@@ -81,13 +81,14 @@ class CourseRepository(
     }
 
     /**
-     * Menghapus mapel sekaligus semua modul di dalamnya.
+     * Menghapus mapel sekaligus semua modul di dalamnya,
+     * termasuk file materi modul yang tersimpan di Firebase Storage.
      */
     suspend fun deleteCourse(courseId: String): String? {
         return try {
             val modules = getModules(courseId)
             for (m in modules) {
-                db.collection(COLLECTION_MODULES).document(m.id).delete().await()
+                deleteModule(m.id, m.fileName)
             }
             db.collection(COLLECTION_COURSES).document(courseId).delete().await()
             null

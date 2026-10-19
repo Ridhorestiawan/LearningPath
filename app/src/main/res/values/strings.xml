@@ -72,6 +72,9 @@
     <string name="hapus_modul">Hapus Modul?</string>
     <string name="konfirmasi_hapus_modul">Yakin ingin menghapus "%1$s"?</string>
     <string name="hapus">Hapus</string>
+    <string name="hapus_mapel">Hapus Mapel?</string>
+    <string name="konfirmasi_hapus_mapel">Hapus mapel "%1$s"? %2$d modul beserta file materinya ikut terhapus permanen.</string>
+    <string name="mapel_dihapus">Mapel berhasil dihapus</string>
     <string name="mode_guru">Mode Guru</string>
     <string name="buka_dashboard_guru">Buka Dashboard Guru</string>
     <string name="konfirmasi_logout_title">Keluar dari akun?</string>

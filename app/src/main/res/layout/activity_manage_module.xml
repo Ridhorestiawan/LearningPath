@@ -30,13 +30,32 @@
             android:textSize="14sp"
             android:textStyle="bold" />
 
-        <Spinner
-            android:id="@+id/spinnerCourse"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginTop="8dp" />
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/spinnerCourse"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnDeleteCourse"
+                style="@style/Widget.Material3.Button.IconButton.Filled"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/hapus_mapel"
+                android:enabled="false"
+                app:backgroundTint="@color/error_container"
+                app:icon="@drawable/ic_delete"
+                app:iconTint="@color/error" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/tvEmpty"
