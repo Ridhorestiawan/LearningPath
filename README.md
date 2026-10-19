@@ -31,7 +31,8 @@ guru memantau progres seluruh siswa dari satu dashboard.
 ### Guru
 - [x] Dashboard rekap: jumlah siswa, rata-rata XP, daftar siswa + pencarian
 - [x] Kelola modul (CRUD) termasuk unggah file materi dan tautan video
-- [x] Buat & hapus mata pelajaran
+- [x] Buat & hapus mata pelajaran — hapus permanen beserta seluruh modul,
+  file materi di Storage (konfirmasi berisi jumlah modul yang ikut terhapus)
 - [x] Rekap progres siswa per mata pelajaran
 
 ### Inti Logika
