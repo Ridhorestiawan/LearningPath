@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.ridho.learningpath.ui.home.HomeFragment"
+        android:label="@string/nav_beranda" />
+
+    <fragment
+        android:id="@+id/progressFragment"
+        android:name="com.ridho.learningpath.ui.progress.ProgressFragment"
+        android:label="@string/nav_progres" />
+
+    <fragment
+        android:id="@+id/leaderboardFragment"
+        android:name="com.ridho.learningpath.ui.leaderboard.LeaderboardFragment"
+        android:label="@string/nav_peringkat" />
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.ridho.learningpath.ui.profile.ProfileFragment"
+        android:label="@string/nav_profil" />
+
+<fragment
+        android:id="@+id/teacherHomeFragment"
+        android:name="com.ridho.learningpath.ui.teacher.TeacherHomeFragment"
+        android:label="@string/mode_guru" />
+
+</navigation>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Brand (varian gelap) -->
+    <color name="primary">#818CF8</color>
+    <color name="primary_dark">#6366F1</color>
+    <color name="primary_light">#A5B4FC</color>
+    <color name="accent">#FBBF24</color>
+    <color name="success">#34D399</color>
+    <color name="level_purple">#A78BFA</color>
+    <color name="error">#F87171</color>
+    <color name="error_dark">#EF4444</color>
+
+    <!-- Material 3 roles -->
+    <color name="on_primary">#0B0F19</color>
+    <color name="primary_container">#3730A3</color>
+    <color name="on_primary_container">#E0E7FF</color>
+    <color name="on_secondary">#1F2937</color>
+    <color name="secondary_container">#784F09</color>
+    <color name="on_secondary_container">#FEF3C7</color>
+    <color name="on_tertiary">#0B0F19</color>
+    <color name="tertiary_container">#4C1D95</color>
+    <color name="on_tertiary_container">#EDE9FE</color>
+    <color name="surface">#12161C</color>
+    <color name="on_surface">#E5E7EB</color>
+    <color name="surface_variant">#1C2229</color>
+    <color name="on_surface_variant">#9CA3AF</color>
+    <color name="outline">#2A3038</color>
+    <color name="outline_variant">#242B33</color>
+    <color name="background">#0C0F13</color>
+    <color name="on_background">#E5E7EB</color>
+    <color name="on_error">#1A0A0A</color>
+    <color name="error_container">#7F1D1D</color>
+    <color name="on_error_container">#FEE2E2</color>
+
+    <!-- Legacy aliases -->
+    <color name="black">#F3F4F6</color>
+    <color name="white">#FFFFFF</color>
+    <color name="gray">#9CA3AF</color>
+    <color name="light_gray">#101418</color>
+    <color name="border">#2A3038</color>
+</resources>

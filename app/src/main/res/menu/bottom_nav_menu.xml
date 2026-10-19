@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/ic_nav_home"
+        android:title="@string/nav_beranda" />
+
+    <item
+        android:id="@+id/progressFragment"
+        android:icon="@drawable/ic_nav_progress"
+        android:title="@string/nav_progres" />
+
+    <item
+        android:id="@+id/leaderboardFragment"
+        android:icon="@drawable/ic_nav_leaderboard"
+        android:title="@string/nav_peringkat" />
+
+    <item
+        android:id="@+id/profileFragment"
+        android:icon="@drawable/ic_nav_profile"
+        android:title="@string/nav_profil" />
+
+</menu>

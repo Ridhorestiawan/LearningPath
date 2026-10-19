@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Learning Path</string>
+    <string name="tagline">Jejaki Belajarmu, Raih Pencapaianmu</string>
+    <string name="brand_initials">LP</string>
+
+    <!-- Auth -->
+    <string name="title_selamat_datang">Selamat Datang</string>
+    <string name="subtitle_login">Masuk untuk melanjutkan belajar</string>
+    <string name="daftar_akun">Daftar Akun</string>
+    <string name="subtitle_register">Mulai jejaki perjalanan belajarmu</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_nama_lengkap">Nama Lengkap</string>
+    <string name="lupa_password">Lupa Password?</string>
+    <string name="masuk">Masuk</string>
+    <string name="daftar">Daftar</string>
+    <string name="belum_punya_akun">Belum punya akun?</string>
+    <string name="sudah_punya_akun">Sudah punya akun?</string>
+    <string name="daftar_sebagai">Daftar sebagai</string>
+    <string name="peran_siswa">Siswa</string>
+    <string name="peran_guru">Guru</string>
+    <string name="reset_password_title">Reset Password</string>
+    <string name="reset_password_desc">Masukkan email terdaftar untuk menerima link reset</string>
+    <string name="kirim_link_reset">Kirim Link Reset</string>
+
+    <!-- Navigation -->
+    <string name="nav_beranda">Beranda</string>
+    <string name="nav_progres">Progres</string>
+    <string name="nav_peringkat">Peringkat</string>
+    <string name="nav_profil">Profil</string>
+
+    <!-- Profil -->
+    <string name="edit_profil">Edit Profil</string>
+    <string name="simpan">Simpan</string>
+    <string name="logout">Keluar</string>
+    <string name="foto_profil">Foto Profil</string>
+    <string name="ubah_foto">Ubah foto</string>
+    <string name="ubah_foto_profil">Ubah Foto Profil</string>
+    <string name="gagal_unggah_foto">Gagal mengunggah foto profil. Periksa internet dan pastikan Cloud Storage aktif di Firebase.</string>
+    <string name="profil_diperbarui">Profil diperbarui</string>
+
+    <!-- Dashboard Guru -->
+    <string name="kelola_modul">Kelola Modul</string>
+    <string name="tambah_modul">Tambah Modul</string>
+    <string name="tambah_mapel">Tambah Mapel</string>
+    <string name="rekap_siswa">Rekap Progres Siswa</string>
+    <string name="cari_siswa">Cari siswa…</string>
+
+    <!-- Course / Modul -->
+    <string name="baca_materi">Baca Materi</string>
+    <string name="tandai_selesai">Tandai Selesai</string>
+    <string name="sudah_selesai">Sudah Selesai</string>
+    <string name="selesai">Selesai</string>
+    <string name="belum_dikerjakan">Belum dikerjakan</string>
+    <string name="x_of_y_modul_selesai">%1$d/%2$d modul selesai</string>
+    <string name="xp_reward">+%1$d XP</string>
+    <string name="xp_awarded">Selamat! +%1$d XP</string>
+    <string name="gagal_selesai">Gagal menandai modul. Coba lagi.</string>
+    <string name="login_dulu">Silakan login dulu</string>
+    <string name="nama_mapel">Nama Mata Pelajaran</string>
+    <string name="deskripsi_mapel">Deskripsi (opsional)</string>
+    <string name="mapel_kosong">Belum ada mapel. Buat mapel lewat Dashboard Guru.</string>
+    <string name="batal">Batal</string>
+    <string name="nama_wajib">Nama wajib diisi</string>
+    <string name="mapel_ditambahkan">Mapel berhasil ditambahkan</string>
+    <string name="pilih_mapel_dulu">Pilih mapel terlebih dahulu</string>
+    <string name="edit_modul">Edit Modul</string>
+    <string name="pilih_mapel_untuk_melihat_modul">Pilih mapel untuk melihat modulnya.</string>
+    <string name="belum_ada_modul">Belum ada modul untuk mapel ini.</string>
+    <string name="judul_wajib">Judul wajib diisi</string>
+    <string name="hapus_modul">Hapus Modul?</string>
+    <string name="konfirmasi_hapus_modul">Yakin ingin menghapus "%1$s"?</string>
+    <string name="hapus">Hapus</string>
+    <string name="mode_guru">Mode Guru</string>
+    <string name="buka_dashboard_guru">Buka Dashboard Guru</string>
+    <string name="konfirmasi_logout_title">Keluar dari akun?</string>
+    <string name="konfirmasi_logout_msg">Anda yakin ingin keluar dari aplikasi?</string>
+
+    <!-- File Materi & Video -->
+    <string name="link_video">Link Video (opsional)</string>
+    <string name="link_video_tidak_valid">Link video harus diawali http:// atau https://</string>
+    <string name="pilih_file">Pilih File</string>
+    <string name="buka_file">Buka File Materi</string>
+    <string name="tonton_video">Tonton Video</string>
+    <string name="gagal_tambah_modul">Gagal menambah modul. Coba lagi.</string>
+    <string name="gagal_unggah">Gagal mengunggah file. Periksa internet dan pastikan Cloud Storage aktif di Firebase.</string>
+    <string name="file_tidak_terbaca">File tidak bisa dibuka di perangkat ini.</string>
+    <string name="video_tidak_terbuka">Tidak ada aplikasi untuk membuka video.</string>
+
+    <!-- Home -->
+    <string name="halo_pelajar">Halo, Pelajar!</string>
+    <string name="section_mata_pelajaran">Mata Pelajaran</string>
+    <string name="empty_mapel_home">Belum ada mata pelajaran.\nHubungi guru untuk menambahkan.</string>
+    <string name="sedang_belajar">Sedang menempuh perjalanan belajar!</string>
+    <string name="level_info">Level %1$d • %2$d XP</string>
+
+    <!-- Progress & Leaderboard -->
+    <string name="ringkasan_progres">Ringkasan Progres Belajar</string>
+    <string name="empty_progres">Belum ada data progres.</string>
+    <string name="papan_peringkat">Papan Peringkat</string>
+    <string name="empty_peringkat">Belum ada data peringkat.</string>
+    <string name="profil_kamu">Profil kamu</string>
+    <string name="label_level">Level</string>
+    <string name="label_total_xp">Total XP</string>
+    <string name="label_badge">Badge</string>
+    <string name="koleksi_badge">Koleksi Badge</string>
+    <string name="nama_pengguna">Nama Pengguna</string>
+
+    <!-- Dashboard Guru -->
+    <string name="mode_guru_desc">Kelola mapel, modul, dan pantau progres siswa.</string>
+    <string name="label_daftar_siswa">Daftar Siswa</string>
+    <string name="label_siswa">Siswa</string>
+    <string name="label_rata_rata_xp">Rata-rata XP</string>
+    <string name="label_modul">Modul</string>
+    <string name="empty_siswa">Belum ada siswa terdaftar.</string>
+    <string name="error_load_data">Gagal memuat data. Periksa koneksi Anda.</string>
+    <string name="progres_per_mapel">Progres per Mata Pelajaran</string>
+    <string name="empty_progres_siswa">Belum ada progres belajar untuk siswa ini.</string>
+    <string name="section_modul_pembelajaran">Modul Pembelajaran</string>
+    <string name="empty_modul_mapel">Belum ada modul tersedia.</string>
+    <string name="error_load_modul">Gagal memuat data. Periksa koneksi lalu coba lagi.</string>
+    <string name="label_edit">Edit</string>
+    <string name="label_syarat_badge">Syarat</string>
+    <string name="pilih_mapel">Pilih Mata Pelajaran</string>
+    <string name="pilih_mapel_modul">Pilih mata pelajaran untuk melihat modulnya.</string>
+</resources>

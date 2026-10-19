@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Spacing scale -->
+    <dimen name="space_xs">4dp</dimen>
+    <dimen name="space_sm">8dp</dimen>
+    <dimen name="space_md">12dp</dimen>
+    <dimen name="space_lg">16dp</dimen>
+    <dimen name="space_xl">24dp</dimen>
+    <dimen name="space_xxl">32dp</dimen>
+
+    <!-- Radius -->
+    <dimen name="radius_sm">8dp</dimen>
+    <dimen name="radius_md">12dp</dimen>
+    <dimen name="radius_lg">16dp</dimen>
+    <dimen name="radius_xl">24dp</dimen>
+
+    <!-- Elevation -->
+    <dimen name="elev_low">1dp</dimen>
+    <dimen name="elev_med">2dp</dimen>
+    <dimen name="elev_high">4dp</dimen>
+
+    <!-- Ukuran komponen -->
+    <dimen name="size_input">52dp</dimen>
+    <dimen name="size_avatar">80dp</dimen>
+    <dimen name="size_button">52dp</dimen>
+    <dimen name="toolbar_mini">48dp</dimen>
+</resources>
