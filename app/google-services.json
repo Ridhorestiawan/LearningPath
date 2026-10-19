@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "388750642157",
+    "project_id": "learning-path-app-7a14b",
+    "storage_bucket": "learning-path-app-7a14b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:388750642157:android:90e5c0aa7b86ba8ae035e4",
+        "android_client_info": {
+          "package_name": "com.ridho.learningpath"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDoJmhc4WDSxFf7ATN3ArJHfXHs5psCCWs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
