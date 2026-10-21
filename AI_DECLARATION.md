@@ -54,7 +54,7 @@ menerima/menolak setiap saran berdasarkan hasil pengujian nyata.
 > *"saya ingin membuat aplikasi berdasarkan prd dan srs yg saya buat, buatkan to do listnya mulai dari awal hingga akhir"*
 
 Dilanjutkan dengan instruksi inkremental:
-> *"kerjakan sampai fase 1"* · *"kerjakan to do yg blm dikerjakan"*
+> *"kerjakan sampai fase 1"* · *"bantu kerjakan to do yg blm dikerjakan"*
 
 **Hasil awal AI:** daftar tugas implementasi bertahap yang diturunkan langsung dari
 struktur PRD/SRS milik mahasiswa (model data → repository → autentikasi → layar siswa → gamifikasi → dashboard guru).
@@ -76,7 +76,7 @@ ditulis sendiri, sehingga jawaban AI terukur pada kebutuhan nyata, bukan tebakan
 > *"sekarang malah aplikasi nya jadi fc ketika di buka"*
 > *"masih ada bug di mode guru ketika saya buka aplikasinya terjadi fc terus menerus"*
 > *"masih terus terusan fc ketika saya login sebagai guru"*
-> *"eksekusi dan pastikan no bug"*
+> *"bantu eksekusi dan pastikan no bug dan berikan lokasi tempat kamu koreksi tadi"*
 
 **Hasil awal AI:** AI beberapa kali menyatakan perbaikan selesai, namun force-close
 masih terulang saat login sebagai guru.
