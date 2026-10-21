@@ -43,10 +43,6 @@ menerima/menolak setiap saran berdasarkan hasil pengujian nyata.
 | Pengujian & debugging | Diagnosis berdasarkan laporan + logcat | **Menjalankan aplikasi di emulator**, menemukan & melaporkan bug, memverifikasi perbaikan benar-benar hilang |
 | Perbaikan persiapan UTS (transaksi XP, DiffUtil, validasi email) | Usulan & implementasi perbaikan dari hasil review kode | Menyetujui usulan, memverifikasi hasil build & perilaku di aplikasi |
 
-> ⚠️ **Catatan verifikasi:** Tabel di atas disusun dari riwayat sesi yang tersimpan.
-> Sebelum mengunggah, mohon **dikoreksi bila ada baris yang tidak sesuai** dengan
-> pengalaman kerja Anda — deklarasi ini harus akurat karena akan dipertanggungjawabkan
-> secara lisan saat presentasi.
 
 ---
 
