@@ -45,21 +45,10 @@ guru memantau progres seluruh siswa dari satu dashboard.
 
 ## Tangkapan Layar
 
-> 📸 **Bagian ini perlu diisi** — ambil screenshot dari emulator (resolusi minimal 720p),
-> simpan dengan nama berikut di folder `docs/screenshots/`, lalu komit.
-
 | | | |
 |---|---|---|
-| ![Login](docs/screenshots/01_login.png) | ![Beranda](docs/screenshots/02_home.png) | ![Detail Modul](docs/screenshots/03_detail_modul.png) |
-| ![Progres & XP](docs/screenshots/04_progres_xp.png) | ![Leaderboard](docs/screenshots/05_leaderboard.png) | ![Dashboard Guru](docs/screenshots/06_dashboard_guru.png) |
-
-Daftar file yang dibutuhkan:
-1. `01_login.png` — layar login
-2. `02_home.png` — beranda siswa (daftar mapel + progress bar)
-3. `03_detail_modul.png` — daftar modul & status selesai
-4. `04_progres_xp.png` — penambahan XP / ringkasan progres
-5. `05_leaderboard.png` — papan peringkat
-6. `06_dashboard_guru.png` — dashboard guru / kelola modul
+| ![Login](docs/screenshots/01_login.jpg) | ![Beranda](docs/screenshots/02_home.jpg) | ![Detail Modul](docs/screenshots/03_detail_modul.jpg) |
+| ![Progres & XP](docs/screenshots/04_progres_xp.jpg) | ![Leaderboard](docs/screenshots/05_leaderboard.jpg) | ![Dashboard Guru](docs/screenshots/06_dashboard_guru.jpg) |
 
 ---
 
