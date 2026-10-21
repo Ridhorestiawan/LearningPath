@@ -2,7 +2,7 @@
 
 Deklarasi transparansi penggunaan kecerdasan buatan
 **Mata Kuliah:** Mobile Programming · **UTS** · Proyek Mandiri (Individu)
-**Nama:** Ridho · **NIM:** 2413025031 · **Program Studi:** Pendidikan Teknologi Informasi
+**Nama:** Ridho Restiawan · **NIM:** 2413025031 · **Program Studi:** Pendidikan Teknologi Informasi
 **Institusi:** Universitas Lampung · **Tahun:** 2026
 
 Berkas ini memuat deklarasi penggunaan AI sebagai alat bantu produktivitas (*copilot*)
