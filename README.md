@@ -9,7 +9,7 @@ guru memantau progres seluruh siswa dari satu dashboard.
 | | |
 |---|---|
 | **Nama** | Ridho |
-| **NIM** | 2413025031 |
+| **NPM** | 2413025031 |
 | **Stack** | Kotlin · XML Views · Firebase (Auth, Cloud Firestore, Cloud Storage) |
 | **Min SDK** | 24 (Android 7.0) — Target SDK 34 |
 | **Arsitektur** | Layered: `data/model` → `data/repository` → `ui/*` (tanpa framework MVVM penuh) |
